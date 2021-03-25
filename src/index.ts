@@ -30,7 +30,7 @@ const main = async () => {
       cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 365 * 10, // 10 years
         httpOnly: true,
-        secure: __prod__, // cookie only works in https
+        secure: __prod__, // true => cookie only works in https
         sameSite: "lax", // csrf
       },
       saveUninitialized: false,
@@ -53,8 +53,6 @@ const main = async () => {
   });
 
   apolloServer.applyMiddleware({ app });
-
-  console.log("Hello WORLD");
 };
 
 main().catch((err) => console.error(err));
