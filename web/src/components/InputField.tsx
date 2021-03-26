@@ -10,16 +10,15 @@ import { InputHTMLAttributes } from "react";
 type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
   name: string;
   label: string;
-  placeholder?: string;
 };
 
-const InputField: React.FC<InputFieldProps> = (props) => {
+const InputField: React.FC<InputFieldProps> = ({ size: _, ...props }) => {
   const [field, { error }] = useField(props);
 
   return (
     <FormControl isInvalid={!!error}>
-      <FormLabel htmlFor="username">{props.label}</FormLabel>
-      <Input {...field} id={field.name} placeholder={props.placeholder} />
+      <FormLabel htmlFor={props.name}>{props.label}</FormLabel>
+      <Input {...field} {...props} id={props.name} />
       {error && <FormErrorMessage>{error}</FormErrorMessage>}
     </FormControl>
   );
